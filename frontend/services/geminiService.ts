@@ -1,9 +1,9 @@
 
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // Initialize the Gemini API client using the environment variable.
 // ALWAYS use a named parameter and the exact environment variable process.env.API_KEY.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenerativeAI({ apiKey: process.env.API_KEY });
 
 export const geminiService = {
   /**

@@ -1,14 +1,16 @@
-
-import React from 'react';
-import { Booking, BookingStatus } from '../types';
-import { Check, X, CheckCircle, RotateCcw } from 'lucide-react';
+import React from "react";
+import { type Booking, BookingStatus } from "../types";
+import { Check, X, CheckCircle, RotateCcw } from "lucide-react";
 
 interface BookingStatusManagerProps {
   booking: Booking;
   onUpdateStatus: (id: string, newStatus: BookingStatus) => void;
 }
 
-export const BookingStatusManager: React.FC<BookingStatusManagerProps> = ({ booking, onUpdateStatus }) => {
+export const BookingStatusManager: React.FC<BookingStatusManagerProps> = ({
+  booking,
+  onUpdateStatus,
+}) => {
   // We only hide actions for COMPLETED bookings as they are the final state.
   // CANCELLED bookings can now be RESTORED.
   if (booking.status === BookingStatus.COMPLETED) {
@@ -26,7 +28,7 @@ export const BookingStatusManager: React.FC<BookingStatusManagerProps> = ({ book
           <Check size={16} />
         </button>
       )}
-      
+
       {booking.status === BookingStatus.CONFIRMED && (
         <button
           onClick={() => onUpdateStatus(booking.id, BookingStatus.COMPLETED)}
@@ -43,8 +45,13 @@ export const BookingStatusManager: React.FC<BookingStatusManagerProps> = ({ book
           className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-all shadow-sm flex items-center gap-2 group"
           title="Restore Booking"
         >
-          <RotateCcw size={16} className="group-hover:-rotate-45 transition-transform" />
-          <span className="text-[10px] font-black uppercase tracking-widest pr-1">Restore</span>
+          <RotateCcw
+            size={16}
+            className="group-hover:-rotate-45 transition-transform"
+          />
+          <span className="text-[10px] font-black uppercase tracking-widest pr-1">
+            Restore
+          </span>
         </button>
       ) : (
         <button

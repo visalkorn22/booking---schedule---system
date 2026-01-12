@@ -1,41 +1,36 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { MOCK_STAFF } from "../constants";
-import {
-  type Service,
-  type Staff,
-  BookingStatus,
-  PaymentStatus,
-  PaymentMethod,
-  RecurrencePattern,
-  type Booking,
-  type User as UserType,
-  type Location,
+import type {
+  Service,
+  Staff,
+  Booking,
+  User as UserType,
+  Location,
 } from "../types";
 import {
-  ChevronRight,
   ChevronLeft,
   Clock,
   User,
   CheckCircle2,
   Sparkles,
-  RefreshCcw,
   MapPin,
   Building,
-  CalendarDays,
-  AlertTriangle,
   CreditCard,
   Wallet,
   Store,
   Printer,
   Download,
   CheckCircle,
-  QrCode,
   Scan,
-  Maximize,
   Image as ImageIcon,
 } from "lucide-react";
-import { formatInTimezone } from "../utils/dateUtils";
 import { useLanguage } from "../contexts/LanguageContext";
+import {
+  BookingStatus,
+  PaymentStatus,
+  PaymentMethod,
+  RecurrencePattern,
+} from "../types";
 
 const Receipt = ({
   booking,
@@ -50,7 +45,6 @@ const Receipt = ({
 }) => {
   const { t } = useLanguage();
 
-  // Generate a unique data string for the QR code
   const qrData = encodeURIComponent(
     JSON.stringify({
       id: booking.id,
@@ -102,7 +96,6 @@ const Receipt = ({
 
         <div className="h-px bg-slate-100 w-full" />
 
-        {/* QR Verification Section */}
         <div className="flex flex-col items-center justify-center py-4 bg-slate-50 rounded-[2rem] border border-slate-100 relative group overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-1 bg-indigo-500/20 animate-[scan_2s_ease-in-out_infinite]" />
           <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 group-hover:scale-105 transition-transform duration-500">
@@ -115,12 +108,12 @@ const Receipt = ({
           <style
             dangerouslySetInnerHTML={{
               __html: `
-            @keyframes scan {
-              0% { top: 0; opacity: 0; }
-              50% { opacity: 1; }
-              100% { top: 100%; opacity: 0; }
-            }
-          `,
+                @keyframes scan {
+                  0% { top: 0; opacity: 0; }
+                  50% { opacity: 1; }
+                  100% { top: 100%; opacity: 0; }
+                }
+              `,
             }}
           />
         </div>
@@ -286,6 +279,7 @@ const BookingWizard: React.FC<BookingWizardProps> = ({
       recurrencePattern: recurrence,
       createdAt: new Date().toISOString(),
     };
+
     setFinalBooking(newBooking);
     onBookingComplete(newBooking);
     setStep(7);
@@ -294,6 +288,7 @@ const BookingWizard: React.FC<BookingWizardProps> = ({
   const filteredServices = services.filter((s) =>
     s.locationIds.includes(selectedLocation?.id || "")
   );
+
   const filteredStaff = MOCK_STAFF.filter(
     (s) =>
       s.locationIds.includes(selectedLocation?.id || "") &&
@@ -376,6 +371,7 @@ const BookingWizard: React.FC<BookingWizardProps> = ({
                 </p>
               </div>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {filteredServices.map((service) => (
                 <button
@@ -388,16 +384,19 @@ const BookingWizard: React.FC<BookingWizardProps> = ({
                       <img
                         src={service.imageUrl}
                         className="w-full h-full object-cover"
+                        alt={service.name}
                       />
                     ) : (
                       <div className="w-full h-full bg-slate-50 flex items-center justify-center text-slate-300">
                         <ImageIcon size={32} />
                       </div>
                     )}
+
                     <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur rounded-lg text-[9px] font-black uppercase tracking-widest text-indigo-600 border border-white/50">
                       {service.category}
                     </div>
                   </div>
+
                   <div className="p-8">
                     <div className="flex justify-between items-start mb-2">
                       <h4 className="text-xl font-bold text-slate-900">
@@ -407,9 +406,11 @@ const BookingWizard: React.FC<BookingWizardProps> = ({
                         ${service.price}
                       </span>
                     </div>
+
                     <p className="text-sm text-slate-500 leading-relaxed mb-6 line-clamp-2">
                       {service.description}
                     </p>
+
                     <div className="flex items-center gap-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">
                       <span className="flex items-center gap-2">
                         <Clock size={16} className="text-indigo-600" />{" "}
@@ -436,6 +437,7 @@ const BookingWizard: React.FC<BookingWizardProps> = ({
                 Select Your Specialist
               </h3>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {filteredStaff.map((staff) => (
                 <button
@@ -486,6 +488,7 @@ const BookingWizard: React.FC<BookingWizardProps> = ({
                     className="w-full p-5 rounded-2xl bg-slate-50 border-0 font-bold text-slate-900 outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all"
                   />
                 </div>
+
                 {selectedDate && (
                   <div className="animate-in fade-in slide-in-from-top-4">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-4">
@@ -516,6 +519,7 @@ const BookingWizard: React.FC<BookingWizardProps> = ({
                   </div>
                 )}
               </div>
+
               <div className="lg:col-span-7 flex flex-col justify-end">
                 <button
                   disabled={!selectedDate || !selectedTime}
@@ -562,6 +566,7 @@ const BookingWizard: React.FC<BookingWizardProps> = ({
                   </p>
                 </div>
               </div>
+
               <div className="flex justify-between border-t border-slate-100 pt-6">
                 <div>
                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">

@@ -1,5 +1,10 @@
 import React from "react";
-import { type Booking, type User, type Service, BookingStatus } from "../types";
+import {
+  type Booking,
+  type User,
+  type Service,
+  BookingStatus,
+} from "../../types";
 import { formatInTimezone } from "../utils/dateUtils";
 import {
   ChevronLeft,

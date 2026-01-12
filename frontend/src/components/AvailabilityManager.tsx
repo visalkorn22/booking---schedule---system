@@ -9,7 +9,7 @@ import {
   AlertCircle,
   RefreshCcw,
 } from "lucide-react";
-import { type Booking, BookingStatus, type Service } from "../types";
+import { type Booking, BookingStatus, type Service } from "../../types";
 
 const DAYS = [
   "Monday",

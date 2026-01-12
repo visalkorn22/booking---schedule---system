@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import Layout from "../components/Layout";
+import Layout from "./components/Layout";
 import {
   MOCK_USERS,
   MOCK_SERVICES,
@@ -7,7 +7,7 @@ import {
   INITIAL_REVIEWS,
   MOCK_STAFF,
   MOCK_LOCATIONS,
-} from "../constants";
+} from "./constants";
 import {
   UserRole,
   type Booking,
@@ -21,7 +21,7 @@ import {
   type Notification,
   type Location,
 } from "../types";
-import { StatCard, SectionTitle } from "../components/DashboardWidgets";
+import { StatCard, SectionTitle } from "./components/DashboardWidgets";
 // Fix: Added Image as ImageIcon to lucide-react imports
 import {
   Calendar,
@@ -52,18 +52,18 @@ import {
   Users,
   Image as ImageIcon,
 } from "lucide-react";
-import BookingWizard from "../pages/CustomerBooking";
-import { RatingStars } from "../components/RatingStars";
-import { BookingStatusManager } from "../components/BookingStatusManager";
-import { AvailabilityManager } from "../components/AvailabilityManager";
-import { formatInTimezone } from "../utils/dateUtils";
-import { SearchIntelligence } from "../components/SearchIntelligence";
-import { ServiceModal } from "../components/ServiceManager";
-import { FinancialManager } from "../components/FinancialManager";
-import { CalendarGrid } from "../components/CalendarGrid";
-import { useLanguage, type Language } from "../contexts/LanguageContext";
-import { AuthPortal } from "../components/AuthPortal";
-import { AnalyticsChart } from "../components/AnalyticsChart";
+import BookingWizard from "./pages/CustomerBooking";
+import { RatingStars } from "./components/RatingStars";
+import { BookingStatusManager } from "./components/BookingStatusManager";
+import { AvailabilityManager } from "./components/AvailabilityManager";
+import { formatInTimezone } from "./utils/dateUtils";
+import { SearchIntelligence } from "./components/SearchIntelligence";
+import { ServiceModal } from "./components/ServiceManager";
+import { FinancialManager } from "./components/FinancialManager";
+import { CalendarGrid } from "./components/CalendarGrid";
+import { useLanguage, type Language } from "./contexts/LanguageContext";
+import { AuthPortal } from "./components/AuthPortal";
+import { AnalyticsChart } from "./components/AnalyticsChart";
 
 // Persistence Helper
 const getStoredServices = () => {

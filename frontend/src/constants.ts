@@ -8,7 +8,7 @@ import {
   type Review,
   RecurrencePattern,
   type Location,
-} from "./types";
+} from "../types";
 
 export const MOCK_LOCATIONS: Location[] = [
   {

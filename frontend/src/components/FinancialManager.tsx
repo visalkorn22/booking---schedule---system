@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { type Booking, PaymentStatus } from "../types";
+import { type Booking, PaymentStatus } from "../../types";
 import {
   DollarSign,
   CreditCard,

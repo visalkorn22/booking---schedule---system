@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UserRole, type Notification, type Location } from "../types";
+import { UserRole, type Notification, type Location } from "../../types";
 import { useLanguage, type Language } from "../contexts/LanguageContext";
 import {
   LayoutDashboard,

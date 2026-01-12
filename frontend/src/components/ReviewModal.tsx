@@ -1,8 +1,7 @@
-
-import React, { useState } from 'react';
-import { X, MessageSquare, Send } from 'lucide-react';
-import { RatingStars } from './RatingStars';
-import { Booking, Service } from '../types';
+import React, { useState } from "react";
+import { X, MessageSquare, Send } from "lucide-react";
+import { RatingStars } from "./RatingStars";
+import { type Booking, type Service } from "../../types";
 
 interface ReviewModalProps {
   booking: Booking;
@@ -11,9 +10,14 @@ interface ReviewModalProps {
   onSubmit: (rating: number, comment: string) => void;
 }
 
-export const ReviewModal: React.FC<ReviewModalProps> = ({ booking, service, onClose, onSubmit }) => {
+export const ReviewModal: React.FC<ReviewModalProps> = ({
+  booking,
+  service,
+  onClose,
+  onSubmit,
+}) => {
   const [rating, setRating] = useState(5);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,25 +30,40 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({ booking, service, onCl
       <div className="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
         <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
           <h3 className="font-bold text-slate-900">Leave a Review</h3>
-          <button onClick={onClose} className="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-50 transition-all">
+          <button
+            onClick={onClose}
+            className="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-50 transition-all"
+          >
             <X size={20} />
           </button>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
           <div className="text-center">
-            <p className="text-sm text-slate-500 mb-2">How was your experience with</p>
-            <h4 className="text-lg font-bold text-indigo-600 mb-4">{service?.name}</h4>
+            <p className="text-sm text-slate-500 mb-2">
+              How was your experience with
+            </p>
+            <h4 className="text-lg font-bold text-indigo-600 mb-4">
+              {service?.name}
+            </h4>
             <div className="flex justify-center">
-              <RatingStars 
-                rating={rating} 
-                interactive={true} 
-                onRatingChange={setRating} 
-                size={32} 
+              <RatingStars
+                rating={rating}
+                interactive={true}
+                onRatingChange={setRating}
+                size={32}
               />
             </div>
             <p className="mt-2 text-xs font-bold text-amber-600 uppercase tracking-widest">
-              {rating === 5 ? 'Excellent' : rating === 4 ? 'Great' : rating === 3 ? 'Good' : rating === 2 ? 'Fair' : 'Poor'}
+              {rating === 5
+                ? "Excellent"
+                : rating === 4
+                ? "Great"
+                : rating === 3
+                ? "Good"
+                : rating === 2
+                ? "Fair"
+                : "Poor"}
             </p>
           </div>
 

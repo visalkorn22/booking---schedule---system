@@ -9,7 +9,7 @@ import {
   Clock,
   Trash2,
 } from "lucide-react";
-import { type Notification } from "../types";
+import { type Notification } from "../../types";
 
 interface NotificationTrayProps {
   notifications: Notification[];

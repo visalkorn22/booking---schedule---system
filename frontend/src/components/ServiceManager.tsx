@@ -11,7 +11,7 @@ import {
   Camera,
   Image as ImageIcon,
 } from "lucide-react";
-import { type Service, RecurrencePattern } from "../types";
+import { type Service, RecurrencePattern } from "../../types";
 import { useLanguage } from "../contexts/LanguageContext";
 
 interface ServiceModalProps {

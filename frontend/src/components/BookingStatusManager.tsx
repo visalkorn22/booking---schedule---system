@@ -1,5 +1,5 @@
 import React from "react";
-import { type Booking, BookingStatus } from "../types";
+import { type Booking, BookingStatus } from "../../types";
 import { Check, X, CheckCircle, RotateCcw } from "lucide-react";
 
 interface BookingStatusManagerProps {
